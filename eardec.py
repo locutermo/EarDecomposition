@@ -4,7 +4,9 @@
 import networkx as nx
 import matplotlib.pyplot as plt
 
-colorList = ["orange", "blue", "red", "green", "magenta", "purple", "yellow", "black"]
+    "orange", "blue", "red", "green", "magenta", "purple", "yellow", "black"
+    "brown","silver","pink","gray",    
+    ]
 global count
 count=0
 
@@ -16,6 +18,7 @@ Input Graph
 
 
 # Non 2-connected (but 2-edge-connected) Graph
+'''
 G=nx.Graph()
 G.add_edge(0,1)
 G.add_edge(7,0)
@@ -29,17 +32,17 @@ G.add_edge(1,7)
 G.add_edge(2,6)
 G.add_edge(3,5)
 G.add_edge(1,5)
-
+'''
 
 
 
 # Petersen Graph
-
+G = nx.tetrahedral_graph()
 '''
 Testing 2-edge-connectivity
 '''
 P = nx.Graph(G)
-print(G.edges())
+#print(G.edges())
 for e in P.edges():         
     H=nx.Graph(G)
     
@@ -58,7 +61,6 @@ for v in P.nodes():
     if not nx.is_connected(G):
         print "G is not 2-connected. The result is not an open ear decomposition."
     G=H
-print(G.edges())
 '''
 Algorithm for Finding an Ear Decomposition
 '''
@@ -84,7 +86,7 @@ def makeSpanningTreeDFS(G,T,current):
 
 def assignNonTreeEdgeLabel(G,T,current):
     global count
-    print(T.nodes(data=True))
+    #print(T.nodes(data=True))
     subrootdfsnum=T.nodes(data=True)[current]['dfsnum']
     for node,nodeattr in T.nodes(data=True):
         if nodeattr['dfsnum']>subrootdfsnum:
@@ -123,6 +125,7 @@ assignTreeEdgeLabel(G,T,0)
 '''
 Output
 '''
+print("Ejecutando...")
 pos=nx.circular_layout(G)
 ear_list=[[] for i in range(count+1)]
 for (x,y) in G.edges():
