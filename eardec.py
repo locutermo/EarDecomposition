@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from datetime import datetime
 
 colorList = [
-    "orange", "blue", "red", "green", "magenta", "purple", "yellow", "black"
+    "orange", "blue", "red", "green", "magenta", "purple", "yellow", "black",
     "brown","silver","pink","gray",    
     ]
 global count
@@ -39,7 +39,8 @@ G.add_edge(1,5)
 
 
 # Petersen Graph
-G = nx.tetrahedral_graph()
+# tutte_graph
+G = nx.tutte_graph()
 '''
 Testing 2-edge-connectivity
 '''
