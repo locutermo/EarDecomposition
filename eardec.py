@@ -4,6 +4,7 @@
 import networkx as nx
 import matplotlib.pyplot as plt
 
+colorList = [
     "orange", "blue", "red", "green", "magenta", "purple", "yellow", "black"
     "brown","silver","pink","gray",    
     ]
