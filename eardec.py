@@ -3,6 +3,7 @@
 
 import networkx as nx
 import matplotlib.pyplot as plt
+from datetime import datetime
 
 colorList = [
     "orange", "blue", "red", "green", "magenta", "purple", "yellow", "black"
@@ -118,10 +119,16 @@ def assignTreeEdgeLabel(G,T,current):
                     label.append(G[current][neighbor]['oreja'])
             G[current][parent]['oreja']=min(label)
 
+instanteInicial = datetime.now()
 
 T=makeSpanningTree(G,0)
 assignNonTreeEdgeLabel(G,T,0)
 assignTreeEdgeLabel(G,T,0)
+
+instanteFinal = datetime.now()
+tiempo = instanteFinal - instanteInicial # Devuelve un objeto timedelta
+segundos = tiempo.microseconds
+print("Segundos: ",segundos," microsegundos")
 
 '''
 Output
