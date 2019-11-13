@@ -1,10 +1,7 @@
-# 20106911 Minjae Park
-# Finding an Ear decomposition of 2(-edge)-connected graph
-
 import networkx as nx
 import matplotlib.pyplot as plt
 from datetime import datetime
-
+#Lista de colores para las orejas
 colorList = [
     "orange", "blue", "red", "green", "magenta", "purple", "yellow", "black",
     "brown","silver","pink","gray",    
@@ -13,14 +10,7 @@ global count
 count=0
 
 '''
-Input Graph
-'''
-# Complete Graph
-# G=nx.complete_graph(6)
-
-
-# Non 2-connected (but 2-edge-connected) Graph
-'''
+# Definiendo aristas del grafo
 G=nx.Graph()
 G.add_edge(0,1)
 G.add_edge(7,0)
@@ -36,16 +26,13 @@ G.add_edge(3,5)
 G.add_edge(1,5)
 '''
 
-
-
+# house_graph
 # Petersen Graph
 # tutte_graph
-G = nx.tutte_graph()
-'''
-Testing 2-edge-connectivity
-'''
+G= nx.tutte_graph()
+
+
 P = nx.Graph(G)
-#print(G.edges())
 for e in P.edges():         
     H=nx.Graph(G)
     
@@ -55,17 +42,15 @@ for e in P.edges():
   
     G=H
 
-'''
-Testing 2-connectivity
-'''
 for v in P.nodes():    
     H=nx.Graph(G)
     G.remove_node(v)
     if not nx.is_connected(G):
-        print "G is not 2-connected. The result is not an open ear decomposition."
+        print("G is not 2-connected. The result is not an open ear decomposition.")
     G=H
+
 '''
-Algorithm for Finding an Ear Decomposition
+Algoritmo para encontrar una descomposicion de oreja 
 '''
 def makeSpanningTree(G,root):
     T=nx.Graph()
@@ -127,9 +112,9 @@ assignNonTreeEdgeLabel(G,T,0)
 assignTreeEdgeLabel(G,T,0)
 
 instanteFinal = datetime.now()
-tiempo = instanteFinal - instanteInicial # Devuelve un objeto timedelta
+tiempo = instanteFinal - instanteInicial 
 segundos = tiempo.microseconds
-print("Segundos: ",segundos," microsegundos")
+print("Tiempo Transcurrido: ",segundos," microsegundos")
 
 '''
 Output
