@@ -1,4 +1,6 @@
 import networkx as nx
+import mythread
+import TreeEdgeThread
 import matplotlib.pyplot as plt
 from datetime import datetime
 #Lista de colores para las orejas
@@ -29,8 +31,7 @@ G.add_edge(1,5)
 # house_graph
 # Petersen Graph
 # tutte_graph
-G= nx.tutte_graph()
-
+G= nx.tetrahedral_graph()
 
 P = nx.Graph(G)
 for e in P.edges():         
@@ -62,17 +63,16 @@ def makeSpanningTree(G,root):
 def makeSpanningTreeDFS(G,T,current):
     if not 'child' in T.node[current]:
         T.node[current]['child']=[]        
-
+    
     for neighbor in G.neighbors(current):        
         if not neighbor in T.nodes():
-            T.add_node(neighbor)
-            T.add_edge(current,neighbor)
-            T.node[neighbor]['dfsnum']=len(T.nodes())
-            T.node[neighbor]['parent']=current
-            T.node[current]['child'].append(neighbor)
-            makeSpanningTreeDFS(G,T,neighbor)
+            hilo =  TreeEdgeThread.myThread(G,neighbor,T,current,1)
+            hilo.start()
+
+    
 
 def assignNonTreeEdgeLabel(G,T,current):
+    print("ASIGNACION de aristas : ",T.nodes[current])
     global count
     #print(T.nodes(data=True))
     subrootdfsnum=T.nodes(data=True)[current]['dfsnum']
@@ -81,6 +81,7 @@ def assignNonTreeEdgeLabel(G,T,current):
             if ((current,node) in G.edges() or (node,current) in G.edges()) and not ((current,node) in T.edges() or (node,current) in T.edges()):
                 G[current][node]['oreja']=count
                 count+=1
+    print("Cantidad de orejas",count)
     for neighbor in T.nodes(data=True)[current]['child']:
         assignNonTreeEdgeLabel(G,T,neighbor)
 
@@ -104,6 +105,7 @@ def assignTreeEdgeLabel(G,T,current):
                 if 'oreja' in G[current][neighbor]:
                     label.append(G[current][neighbor]['oreja'])
             G[current][parent]['oreja']=min(label)
+
 
 instanteInicial = datetime.now()
 
