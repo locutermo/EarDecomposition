@@ -31,7 +31,7 @@ G.add_edge(1,5)
 # house_graph
 # Petersen Graph
 # tutte_graph
-G= nx.tutte_graph()
+G= nx.tetrahedral_graph()
 
 P = nx.Graph(G)
 for e in P.edges():         
@@ -75,6 +75,7 @@ def makeSpanningTreeDFS(G,T,current):
 def assignNonTreeEdgeLabel(G,T,current):
     print("ASIGNACION de aristas : ",T.nodes[current])
     global count
+    print("TT",T.nodes())
     #print(T.nodes(data=True))
     subrootdfsnum=T.nodes(data=True)[current]['dfsnum']
     for node,nodeattr in T.nodes(data=True):
@@ -128,9 +129,11 @@ Output
 print("Ejecutando...")
 pos=nx.circular_layout(G)
 ear_list=[[] for i in range(count+1)]
+print(G.edges())
+print(G[0][1]['oreja'])
 #for (x,y) in G.edges():
-   # ear=G[x][y]['oreja']
-   #s ear_list[ear].append((x,y))
+ #  ear=G[x][y]['oreja']
+  # ear_list[ear].append((x,y))
 nx.draw_networkx_nodes(G,pos)
 nx.draw_networkx_labels(G,pos)
 for i in range(len(ear_list)):

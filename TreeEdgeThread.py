@@ -30,6 +30,7 @@ def asignNode(T,neighbor,current):
    T.node[neighbor]['dfsnum']=len(T.nodes())
    T.node[neighbor]['parent']=current
    T.node[current]['child'].append(neighbor)   
+   print(T.node[current]['child'])
    print("Neightbor: ",neighbor)
                      
    
