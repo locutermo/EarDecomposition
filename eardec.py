@@ -29,7 +29,7 @@ G.add_edge(1,5)
 # house_graph
 # Petersen Graph
 # tutte_graph
-G= nx.tutte_graph()
+G= nx.tetrahedral_graph()
 
 
 P = nx.Graph(G)
@@ -70,6 +70,8 @@ def makeSpanningTreeDFS(G,T,current):
             T.node[neighbor]['dfsnum']=len(T.nodes())
             T.node[neighbor]['parent']=current
             T.node[current]['child'].append(neighbor)
+            print(T.nodes())
+            print(T.node[current]['child'])
             makeSpanningTreeDFS(G,T,neighbor)
 
 def assignNonTreeEdgeLabel(G,T,current):
@@ -80,6 +82,8 @@ def assignNonTreeEdgeLabel(G,T,current):
         if nodeattr['dfsnum']>subrootdfsnum:
             if ((current,node) in G.edges() or (node,current) in G.edges()) and not ((current,node) in T.edges() or (node,current) in T.edges()):
                 G[current][node]['oreja']=count
+                print(G[current][node]['oreja'])
+                print("oreja")
                 count+=1
     for neighbor in T.nodes(data=True)[current]['child']:
         assignNonTreeEdgeLabel(G,T,neighbor)
