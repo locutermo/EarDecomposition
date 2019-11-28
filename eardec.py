@@ -50,14 +50,15 @@ def makeSpanningTreeDFS(G,T,current):
         if not neighbor in T.nodes():         
             hilo =  TreeEdgeThread.myThread(G,neighbor,T,current,1,"Hilo "+str(i))            
             threads.append(hilo)            
-            hilo.start()            
-            print "Numero: "+str(i)
+            hilo.start()                        
             i+=1
 
                                 
-        for x in threads: 
-                x.join()
-            
+    for x in threads:         
+        x.join()
+    
+    print("Finalizo hilos principales")
+
 
     
 
@@ -116,7 +117,7 @@ Output
 print("Ejecutando...")
 pos=nx.circular_layout(G)
 ear_list=[[] for i in range(count+1)]
-print("Aristar de G: ".G.edges())
+print("Aristar de G: ",G.edges())
 
 for (x,y) in G.edges():
    ear=G[x][y]['oreja']

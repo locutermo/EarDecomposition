@@ -14,14 +14,21 @@ class myThread (threading.Thread):
       self.number = number
       self.current = current
       self.name = name 
-   def run(self):            
-      print("------ "+self.name+" - Ciclo: "+str(self.number))
+   def run(self):      
+      mythreads = []
+      print("---"+self.name+" - Ciclo: "+str(self.number)+"\n")
       asignNode(self.T,self.neighbor,self.current)            
       if not 'child' in self.T.node[self.neighbor]: self.T.node[self.current]['child'] = []
       for myneighbor in self.G.neighbors(self.neighbor):
          if not myneighbor in self.T.nodes():
-            hilo = myThread(self.G,myneighbor,self.T,self.neighbor,self.number+1,self.name)
+            hilo = myThread(self.G,myneighbor,self.T,self.neighbor,self.number+1,"-----"+self.name)      
+            mythreads.append(hilo)
             hilo.start()
+      for mythread in mythreads:
+         mythread.join()
+      print("Finalizo ")
+
+      
              
 def asignNode(T,neighbor,current):
    if not 'child' in T.node[current]:
@@ -31,11 +38,11 @@ def asignNode(T,neighbor,current):
    T.node[neighbor]['dfsnum']=len(T.nodes())
    T.node[neighbor]['parent']=current
    T.node[current]['child'].append(neighbor) 
-   print "================================"
-   print ("Datos del nodo: "+ str(current))
+   print "================================\n"
+   print ("Datos del nodo: "+ str(current)+"\n")
    print("Hijo ",T.node[current]['child'])
    print("Neightbor: ",neighbor)
-   print "*==============================*"
+   print "*==============================*\n"
                      
    
 
