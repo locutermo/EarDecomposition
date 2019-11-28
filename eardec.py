@@ -41,14 +41,21 @@ def makeSpanningTree(G,root):
     return T
 
 def makeSpanningTreeDFS(G,T,current):
+    threads = []
+
     if not 'child' in T.node[current]:
         T.node[current]['child']=[]        
     
     for neighbor in G.neighbors(current):        
         if not neighbor in T.nodes():
-            #print("T: ",T.nodes())
+            print("T: ",T.nodes())
             hilo =  TreeEdgeThread.myThread(G,neighbor,T,current,1)
+            threads.append(hilo)
             hilo.start()
+                                
+        for x in threads: 
+                x.join()
+            
 
     
 
@@ -65,7 +72,7 @@ def assignNonTreeEdgeLabel(G,T,current):
                 print("orejas")
                 print(G[current][node]['oreja'])
                 count+=1
-                #print("G :" ,G[current][node]['oreja'])
+                print("OREJA :" ,G[current][node]['oreja'])
     print("Cantidad de orejas",count)
     for neighbor in T.nodes(data=True)[current]['child']:
         assignNonTreeEdgeLabel(G,T,neighbor)
@@ -96,6 +103,7 @@ def assignTreeEdgeLabel(G,T,current):
 instanteInicial = datetime.now()
 
 T=makeSpanningTree(G,0)
+print("T Nodos : ",T.nodes())
 assignNonTreeEdgeLabel(G,T,0)
 assignTreeEdgeLabel(G,T,0)
 
@@ -112,9 +120,9 @@ pos=nx.circular_layout(G)
 ear_list=[[] for i in range(count+1)]
 print(G.edges())
 
-#for (x,y) in G.edges():
- #  ear=G[x][y]['oreja']
-  # ear_list[ear].append((x,y))
+for (x,y) in G.edges():
+   ear=G[x][y]['oreja']
+   ear_list[ear].append((x,y))
 nx.draw_networkx_nodes(G,pos)
 nx.draw_networkx_labels(G,pos)
 for i in range(len(ear_list)):
