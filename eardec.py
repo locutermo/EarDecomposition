@@ -11,29 +11,9 @@ colorList = [
 global count
 count=0
 
-'''
-# Definiendo aristas del grafo
-G=nx.Graph()
-G.add_edge(0,1)
-G.add_edge(7,0)
-G.add_edge(1,2)
-G.add_edge(2,3)
-G.add_edge(3,4)
-G.add_edge(4,5)
-G.add_edge(5,6)
-G.add_edge(6,7)
-G.add_edge(1,7)
-G.add_edge(2,6)
-G.add_edge(3,5)
-G.add_edge(1,5)
-'''
-
-# house_graph
-# Petersen Graph
-# tutte_graph
 G= nx.tetrahedral_graph()
-
 P = nx.Graph(G)
+print("P",P)
 for e in P.edges():         
     H=nx.Graph(G)
     
@@ -66,14 +46,14 @@ def makeSpanningTreeDFS(G,T,current):
     
     for neighbor in G.neighbors(current):        
         if not neighbor in T.nodes():
-            print("T: ",T.nodes())
+            #print("T: ",T.nodes())
             hilo =  TreeEdgeThread.myThread(G,neighbor,T,current,1)
             hilo.start()
 
     
 
 def assignNonTreeEdgeLabel(G,T,current):
-    print("ASIGNACION de aristas : ",T.nodes[current])
+    #print("ASIGNACION de aristas : ",T.nodes[current])
     global count
     print("TT",T.nodes())
     #print(T.nodes(data=True))
@@ -82,8 +62,10 @@ def assignNonTreeEdgeLabel(G,T,current):
         if nodeattr['dfsnum']>subrootdfsnum:
             if ((current,node) in G.edges() or (node,current) in G.edges()) and not ((current,node) in T.edges() or (node,current) in T.edges()):
                 G[current][node]['oreja']=count
+                print("orejas")
+                print(G[current][node]['oreja'])
                 count+=1
-                print("G :" ,G[current][node]['oreja'])
+                #print("G :" ,G[current][node]['oreja'])
     print("Cantidad de orejas",count)
     for neighbor in T.nodes(data=True)[current]['child']:
         assignNonTreeEdgeLabel(G,T,neighbor)
@@ -96,7 +78,6 @@ def assignTreeEdgeLabel(G,T,current):
                 label.append(G[current][neighbor]['oreja'])
         if 'parent' in T.node[current]:
             parent=T.node[current]['parent']
-            
             G[current][parent]['oreja']=min(label)
             
     else:
@@ -130,7 +111,7 @@ print("Ejecutando...")
 pos=nx.circular_layout(G)
 ear_list=[[] for i in range(count+1)]
 print(G.edges())
-print(G[0][1]['oreja'])
+
 #for (x,y) in G.edges():
  #  ear=G[x][y]['oreja']
   # ear_list[ear].append((x,y))
