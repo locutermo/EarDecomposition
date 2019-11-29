@@ -29,7 +29,7 @@ G.add_edge(1,5)
 # house_graph
 # Petersen Graph
 # tutte_graph
-G= nx.tetrahedral_graph()
+G= nx.tutte_graph()
 
 
 P = nx.Graph(G)
