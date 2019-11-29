@@ -11,7 +11,7 @@ colorList = [
 global count
 count=0
 
-G= nx.tutte_graph()
+G= nx.dodecahedral_graph()
 P = nx.Graph(G)
 for e in P.edges():         
     H=nx.Graph(G)
