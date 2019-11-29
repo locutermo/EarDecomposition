@@ -17,6 +17,7 @@ class myThread (threading.Thread):
    def run(self):      
       mythreads = []
       print("---"+self.name+" - Ciclo: "+str(self.number)+"\n")
+      print("Dentro hilo",self.T.nodes())
       asignNode(self.T,self.neighbor,self.current)            
       if not 'child' in self.T.node[self.neighbor]: self.T.node[self.current]['child'] = []
       for myneighbor in self.G.neighbors(self.neighbor):

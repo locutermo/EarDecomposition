@@ -47,7 +47,8 @@ def makeSpanningTreeDFS(G,T,current):
         T.node[current]['child']=[]        
     
     for neighbor in G.neighbors(current):        
-        if not neighbor in T.nodes():         
+        if not neighbor in T.nodes():     
+            print("Antes hilo",T.nodes)    
             hilo =  TreeEdgeThread.myThread(G,neighbor,T,current,1,"Hilo "+str(i))            
             threads.append(hilo)            
             hilo.start()                        
