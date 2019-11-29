@@ -78,6 +78,7 @@ def assignNonTreeEdgeLabel(G,T,current):
     global count
     #print(T.nodes(data=True))
     subrootdfsnum=T.nodes(data=True)[current]['dfsnum']
+    print("SUBROOT: ",subrootdfsnum)
     for node,nodeattr in T.nodes(data=True):
         if nodeattr['dfsnum']>subrootdfsnum:
             if ((current,node) in G.edges() or (node,current) in G.edges()) and not ((current,node) in T.edges() or (node,current) in T.edges()):
