@@ -1,5 +1,4 @@
 import networkx as nx
-import mythread
 import TreeEdgeThread
 import matplotlib.pyplot as plt
 from datetime import datetime
@@ -107,7 +106,7 @@ segundos = tiempo.microseconds
 print("Tiempo Transcurrido: ",segundos," microsegundos")
 archivo = open("mediciones_paralelo.txt", "at")
 print("Tiempo Transcurrido: "+str(segundos)+" microsegundos")
-archivo.write(str(segundos)+'\n')
+archivo.write(str(segundos)+' microsegundos'+'\n')
 archivo.close()
 
 '''
