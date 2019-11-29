@@ -119,13 +119,13 @@ pos=nx.circular_layout(G)
 ear_list=[[] for i in range(count+1)]
 print("Aristar de G: ",G.edges())
 
-for (x,y) in G.edges():
-   ear=G[x][y]['oreja']
-   ear_list[ear].append((x,y))
-nx.draw_networkx_nodes(G,pos)
-nx.draw_networkx_labels(G,pos)
-for i in range(len(ear_list)):
-    nx.draw_networkx_edges(G,pos,edgelist=ear_list[i],edge_color=colorList[i%len(colorList)],alpha=0.5,width=3)
-nx.draw_networkx_edge_labels(G,pos,alpha=0.5)
+#for (x,y) in G.edges():
+#   ear=G[x][y]['oreja']
+#   ear_list[ear].append((x,y))
+#nx.draw_networkx_nodes(G,pos)
+#nx.draw_networkx_labels(G,pos)
+#for i in range(len(ear_list)):
+#    nx.draw_networkx_edges(G,pos,edgelist=ear_list[i],edge_color=colorList[i%len(colorList)],alpha=0.5,width=3)
+#nx.draw_networkx_edge_labels(G,pos,alpha=0.5)
 
 plt.show()
