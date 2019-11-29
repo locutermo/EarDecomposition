@@ -9,27 +9,67 @@ colorList = [
 global count
 count=0
 
-'''
-# Definiendo aristas del grafo
+
 G=nx.Graph()
 G.add_edge(0,1)
-G.add_edge(7,0)
 G.add_edge(1,2)
 G.add_edge(2,3)
 G.add_edge(3,4)
 G.add_edge(4,5)
 G.add_edge(5,6)
 G.add_edge(6,7)
-G.add_edge(1,7)
-G.add_edge(2,6)
-G.add_edge(3,5)
-G.add_edge(1,5)
-'''
+G.add_edge(7,8)
+G.add_edge(8,9)
+G.add_edge(9,10)
+G.add_edge(10,11)
+G.add_edge(11,12)
+G.add_edge(12,13)
+G.add_edge(13,14)
+G.add_edge(14,15)
+G.add_edge(15,16)
+G.add_edge(16,17)
+G.add_edge(17,18)
+G.add_edge(18,19)
+G.add_edge(19,20)
+G.add_edge(20,21)
+G.add_edge(21,22)
+G.add_edge(22,23)
+G.add_edge(23,24)
+G.add_edge(24,25)
+G.add_edge(25,26)
+G.add_edge(26,27)
+G.add_edge(27,28)
+G.add_edge(28,29)
+G.add_edge(29,30)
+G.add_edge(30,31)
+G.add_edge(31,32)
+G.add_edge(32,33)
+G.add_edge(33,34)
+G.add_edge(34,35)
+G.add_edge(35,36)
+G.add_edge(36,37)
+G.add_edge(37,38)
+G.add_edge(38,39)
+G.add_edge(39,40)
+G.add_edge(40,41)
+G.add_edge(41,42)
+G.add_edge(42,43)
+G.add_edge(43,44)
+G.add_edge(44,45)
+G.add_edge(45,46)
+G.add_edge(46,47)
+G.add_edge(47,48)
+G.add_edge(48,49)
+G.add_edge(50,51)
+G.add_edge(51,0)
+G.add_edge(50,3)
+
+
 
 # house_graph
 # Petersen Graph
 # tutte_graph
-G= nx.tutte_graph()
+# G= nx.tutte_graph()
 
 
 P = nx.Graph(G)
