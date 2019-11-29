@@ -11,12 +11,10 @@ class myThread (threading.Thread):
       self.threadID = threadID
       self.name = name
       self.counter = counter
-   def run(self):
-      print "Starting " + self.name
+   def run(self):      
       # Get lock to synchronize threads
       threadLock.acquire()
-      print_time(self.name, 10, self.counter)
-      print "Exiting " + self.name
+      print_time(self.name, 10, self.counter)      
         # Free lock to release next thread
       threadLock.release()
 
