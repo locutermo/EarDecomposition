@@ -11,7 +11,7 @@ colorList = [
 global count
 count=0
 
-G= nx.tetrahedral_graph()
+G= nx.tutte_graph()
 P = nx.Graph(G)
 print("P",P)
 for e in P.edges():         
